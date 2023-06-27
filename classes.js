@@ -43,12 +43,6 @@ class AncestralStories{
      }
 
 
-
-
-
-
-
-
 class StoryTeller extends AncestralStories{
    constructor(length,moralLessons,ageGroup,title,language,name){
        super(length,moralLessons,ageGroup,title,language)
@@ -76,5 +70,78 @@ abunuwasi.tellstory()
 
 
 
+// 2. **African Cuisine:** You're creating a recipe app specifically for African cuisine.
+// The app needs to handle recipes from different African countries, each with its
+// unique ingredients, preparation time, cooking method, and nutritional
+// information. Consider creating a `Recipe` class, and think about how you might
+// create subclasses for different types of recipes (e.g., `MoroccanRecipe`,
+// `EthiopianRecipe`, `NigerianRecipe`), each with their own unique properties and
+// methods.
+
+class Recipe{
+    constructor(ingredients,preparationTime,cookingMethod,nutritionalInfo){
+        this.ingredients=ingredients;
+        this.preparationTime=preparationTime;
+        this.cookingMethod=cookingMethod;
+        this.nutritionalInfo=nutritionalInfo;
+ 
+ 
+    }
+    timeForPreparation(){
+        if(this.preparationTime>=3){
+            console.log("this cuisine takes a long time to prepare")
+        }
+        else{
+            console.log("This cuisine can be prepared within a reasonable amount of time");
+        }
+    }
+    checkForItems(){
+        if(this.ingredients.includes("beans")||this.ingredients.includes("maize")||this.ingredients.includes("njahi")){
+            console.log("You need a pressure cooker to boil this first");
+        }
+        else{
+            console.log("A normal cooker will work just fine");
+        }
+    }
+ }
+ class MoroccanRecipe extends Recipe{
+    constructor(ingredients,preparationTime,cookingMethod,nutritionalInfo,flavourings){
+        super(ingredients,preparationTime,cookingMethod,nutritionalInfo)
+        this.flavorings = flavourings;
+       
+    }
+ 
+ 
+ }
+ class EthiopianRecipe extends Recipe{
+    constructor(ingredients,preparationTime,cookingMethod,nutritionalInfo,typeOfOilUsed){
+        super(ingredients,preparationTime,cookingMethod,nutritionalInfo)
+        this.typeOfOilUsed = typeOfOilUsed;
+       
+    }
+ 
+ 
+ }
+ class NigerianRecipe extends Recipe{
+    constructor(ingredients,preparationTime,cookingMethod,nutritionalInfo,chilliesUsed){
+        super(ingredients,preparationTime,cookingMethod,nutritionalInfo)
+        this.chilliesUsed = chilliesUsed;
+ 
+ 
+ }
+ }
+ const recipe1 = new Recipe(["Rice", "Tomatoes", "Pepper", "Onions", "Chicken"],60, "Boiling/Stir-frying","carbohydrates");
+ console.log(recipe1)
+ const moroccan_recipe = new MoroccanRecipe(["Lentils", "Tomatoes", "Chickpeas", "Coriander", "Lemon"], 30, "Boiling","High in vitamins","Cumin")
+ console.log(moroccan_recipe)
+ const ethiopian_recipe = new EthiopianRecipe(["Flour", "Water", "Salt"], 60, "Fermentation", "Contains healthy amino acids", "Fresh fry")
+ console.log(ethiopian_recipe)
+ const nigerian_recipe = new NigerianRecipe(["mushroom", "Meat", "Fish", "Vegetables", "Pepper"], 90, "dry-fry","High in Protein", 3)
+ console.log(nigerian_recipe)
+ 
+ 
+ recipe1.checkForItems()
+ 
+ 
 
  
