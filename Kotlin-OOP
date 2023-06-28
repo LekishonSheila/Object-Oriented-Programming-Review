@@ -1,0 +1,67 @@
+//1. **Ancestral Stories:** In many African cultures, the art of storytelling is passed
+//down from generation to generation. Imagine you're creating an application that
+//records these oral stories and translates them into different languages. The
+//stories vary by length, moral lessons, and the age group they are intended for.
+//Think about how you would model `Story`, `StoryTeller`, and `Translator`
+//objects, and how inheritance might come into play if there are different types of
+//stories or storytellers.
+//
+fun main() {
+
+    var story1 = AncestralStories("long","courage","children","The Lion king","English")
+
+    var story2 = AncestralStories("short", "hardwork", "teenagers", "Vuna Ulichopanda", "Kiswahili")
+
+    println(story1)
+    println(story2)
+
+    println(story1.translateStory("Kiswahili"))
+    println(story2.translateStory("Kikuyu"))
+
+    story2.addStoryToDatabase()
+    story1.addStoryToDatabase()
+
+
+
+    var abunwasi = StoryTeller("long", "bravery", "Young Adults", "Adventures of Kinjikitile", "Mijikenda", "Abunuwasi")
+
+    println(abunwasi)
+
+    abunwasi.tellStory()
+}
+
+open class AncestralStories(var length: String, var moralLessons: String, var ageGroup: String, var title: String, var language: String) {
+
+//    override fun toString(): String {
+//        return "AncestralStory: Title=$title, Length=$length, Moral Lessons=$moralLessons, Age Group=$ageGroup, Language=$language"
+//    }
+    fun translateStory(newLanguage: String): String {
+        if (language != newLanguage) {
+            return newLanguage
+        } else {
+            return language
+        }
+    }
+    fun addStoryToDatabase() {
+        var database = mutableListOf<String>()
+        if (!database.contains(title)) {
+            database.add(title)
+
+            println("The '$title' story added to the database.")
+        }
+        else {
+            println("This story already exists in storage")
+        }
+    }
+}
+
+
+
+class StoryTeller(length: String,moralLessons: String,ageGroup: String,title: String,language: String,val name: String)
+    : AncestralStories(length, moralLessons, ageGroup, title, language) {
+
+
+    fun tellStory() {
+        println("This is a story called $title, it teaches $ageGroup about $moralLessons")
+    }
+}
