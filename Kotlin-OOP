@@ -113,3 +113,58 @@ class EthiopianRecipe(name: String, ingredients: List<String>, preparationTime: 
 
 class NigerianRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val isSpicy: Boolean) : Recipe(name, "Nigeria", ingredients, preparationTime, cookingMethod, nutritionalInfo)
 
+
+
+
+
+// 3. **Wildlife Preservation:** You're a wildlife conservationist working on a
+// program to track different species in a national park. Each species has its own
+// characteristics and behaviors, such as its diet, typical lifespan, migration
+// patterns, etc. Some species might be predators, others prey. You'll need to
+// create classes to model `Species`, `Predator`, `Prey`, etc., and think about how
+// these classes might relate to each other through inheritance.
+
+open class Species(var diet: String, var typicalLifespan: Int, var migrationPatterns: String) {
+    fun typeOfAnimal() {
+        when (diet) {
+            "herbivorous" -> println("This animal is not a danger to other animals")
+            "omnivorous" -> println("This animal feeds on plants but also feeds on some animals")
+            else -> println("This animal is very dangerous to other animals and does not eat plants")
+        }
+    }
+}
+class Predator(diet: String, typicalLifespan: Int, migrationPatterns: String, var typeOfTeeth: String, var claws: Boolean, var venom: Boolean, var name: String) : Species(diet, typicalLifespan, migrationPatterns) {
+    fun venomousKillers() {
+        if (venom && typeOfTeeth.contains("fangs")) {
+            println("This animal is venomous")
+        } else {
+            println("This animal is not venomous")
+        }
+    }
+    fun methodOfKilling() {
+        when {
+            typeOfTeeth.contains("carnassial teeth") -> println("A $name kills by slicing up their prey")
+            claws -> println("A $name kills by tearing up their prey")
+            venom -> println("A $name kills using venom")
+            else -> println("This animal might be harmless")
+        }
+    }
+}
+class Prey(diet: String, typicalLifespan: Int, migrationPatterns: String, var defenseMechanisms: List<String>, var name: String) : Species(diet, typicalLifespan, migrationPatterns) {
+    fun likelihoodOfSurvival() {
+        if (defenseMechanisms.size > 2) {
+            println("The likelihood of this animal surviving is quite high")
+        } else {
+            println("The likelihood of this animal surviving is quite low")
+        }
+    }
+}
+fun main() {
+    val lion = Predator("carnivorous", 12, "non-migratory", "sharp teeth", true, true, "lion")
+    lion.typeOfAnimal()
+    lion.venomousKillers()
+    lion.methodOfKilling()
+    val gazelle = Prey("herbivorous", 10, "migratory", listOf("camouflage", "speed"), "gazelle")
+    gazelle.typeOfAnimal()
+    gazelle.likelihoodOfSurvival()
+}
