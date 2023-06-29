@@ -141,6 +141,112 @@ class Recipe{
  
  
  recipe1.checkForItems()
+
+
+ // 3. **Wildlife Preservation:** You're a wildlife conservationist working on a
+// program to track different species in a national park. Each species has its own
+// characteristics and behaviors, such as its diet, typical lifespan, migration
+// patterns, etc. Some species might be predators, others prey. You'll need to
+
+
+// create classes to model `Species`, `Predator`, `Prey`, etc., and think about how
+// these classes might relate to each other through inheritance.
+      
+// 3. **Wildlife Preservation:** You're a wildlife conservationist working on a
+// program to track different species in a national park. Each species has its own
+// characteristics and behaviors, such as its diet, typical lifespan, migration
+// patterns, etc. Some species might be predators, others prey. You'll need to
+
+
+// create classes to model `Species`, `Predator`, `Prey`, etc., and think about how
+// these classes might relate to each other through inheritance.
+
+
+class Species{
+   constructor(diet,typicalLifespan,migrationPatterns){
+       this.diet =diet;
+       this.typicalLifespan = typicalLifespan;
+       this.migrationPatterns = migrationPatterns;
+   }
+   typeOfAnimal(){
+       if(this.diet === "herbivorous"){
+           console.log("This animal is not a danger to other animals");
+       }
+       else if(this.diet === "omnivorous"){
+           console.log("This animal feeds on plants but also feeds on aome animals");
+       }
+       else{
+           console.log("This animal is very dangerous to other animals and does not eat plants");
+       }
+   }
+
+
+}
+
+
+class Predator extends Species{
+   constructor(diet,typicalLifespan,migrationPatterns,typeOfTeeth,claws,venom,name){
+   super(diet,typicalLifespan,migrationPatterns)
+       this.typeOfTeeth = typeOfTeeth;
+       this.claws = claws;
+       this.venom = venom;
+       this.name = name;
+   }
+
+
+   venomousKillers(){
+       if(this.venom === true && this.typeOfTeeth.includes('fangs')){
+           console.log("This animal is venomous");
+       }
+       else{
+           console.log("This animals is not venomous");
+       }
+   }
+  
+   methodOfKilling(){
+       if(this.typeOfTeeth.includes("carnassial teeth")){
+           console.log(`A ${this.name} kills by slicing up their prey`);
+          
+       }
+       else if(this.claws === true){
+           console.log(`A ${thid.name} kills by tearing up their prey.`);
+
+
+       }
+       else if(this.venom === true){
+
+
+           console.log(`A ${this.name} kills using venom`);
+       }
+       else{
+           console.log("this animal might be harmless");
+       }
+   }
+
+
+   }
+
+
+
+
+class Prey extends Species{
+   constructor(diet,typicalLifespan,migrationPatterns,defenseMechanisms,name){
+   super(diet,typicalLifespan,migrationPatterns)
+       this.defenseMechanisms = defenseMechanisms;
+       this.name = name;
+   }
+   likelihoodOfSurvival(){
+           if(this.defenseMechanisms.length >2){
+               console.log("The likelihood of this animal surviving is quite high");
+           }
+           else{
+               console.log("The likelihood of this animal surviving is quite low");
+           }
+       }
+   }
+
+
+
  
  
 
