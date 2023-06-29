@@ -90,3 +90,62 @@ ethiopian_recipe = EthiopianRecipe("Boiled eggs",["eggs","water"],20,"protein","
 print(ethiopian_recipe)
 nigerian_recipe = NigerianRecipe("Jollof Rice",["rice", "tomatoes", "onion", "pepper", "spices"],45,"Popular party dish",'is_spicy',True)
 print(nigerian_recipe)
+
+
+# question3
+# **Wildlife Preservation:** You're a wildlife conservationist working on a
+# program to track different species in a national park. Each species has its own
+# characteristics and behaviors, such as its diet, typical lifespan, migration
+# patterns, etc. Some species might be predators, others prey. You'll need to
+# create classes to model `Species`, `Predator`, `Prey`, etc., and think about how
+# these classes might relate to each other through inheritance.
+class Species:
+    def __init__(self, diet, typical_lifespan, migration_patterns):
+        self.diet = diet
+        self.typical_lifespan = typical_lifespan
+        self.migration_patterns = migration_patterns
+    
+    def type_of_animal(self):
+        if self.diet == "herbivorous":
+            print("This animal is not a danger to other animals")
+        elif self.diet == "omnivorous":
+            print("This animal feeds on plants but also feeds on some animals")
+        else:
+            print("This animal is very dangerous to other animals and does not eat plants")
+
+
+class Predator(Species):
+    def __init__(self, diet, typical_lifespan, migration_patterns, type_of_teeth, claws, venom, name):
+        super().__init__(diet, typical_lifespan, migration_patterns)
+        self.type_of_teeth = type_of_teeth
+        self.claws = claws
+        self.venom = venom
+        self.name = name
+
+    def fast_killers(self):
+        if self.venom:
+            print(f"The bite of a {self.name} kills within hours")
+        else:
+            print(f"The bite of a {self.name} is not deadly")
+
+    def method_of_killing(self):
+        if "carnassial teeth" in self.type_of_teeth:
+            print(f"A {self.name} kills by slicing up their prey")
+        else:
+            print("This predator cannot shear their prey's meat after attacks")
+
+
+class Prey(Species):
+    def __init__(self, diet, typical_lifespan, migration_patterns, defense_mechanisms, name):
+        super().__init__(diet, typical_lifespan, migration_patterns)
+        self.defense_mechanisms = defense_mechanisms
+        self.name = name
+  
+# instances
+lion = Predator("carnivorous", 12, "non-migratory", ["carnassial teeth"], True, False, "Lion")
+gazelle = Prey("herbivorous", 10, "seasonal migration", ["speed", "herd behavior"], "Gazelle")
+lion.type_of_animal() 
+lion.fast_killers()   
+lion.method_of_killing() 
+gazelle.type_of_animal() 
+print(gazelle.defense_mechanisms)  
