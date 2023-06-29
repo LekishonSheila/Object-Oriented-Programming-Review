@@ -55,8 +55,6 @@ open class AncestralStories(var length: String, var moralLessons: String, var ag
     }
 }
 
-
-
 class StoryTeller(length: String,moralLessons: String,ageGroup: String,title: String,language: String,val name: String)
     : AncestralStories(length, moralLessons, ageGroup, title, language) {
 
@@ -65,3 +63,53 @@ class StoryTeller(length: String,moralLessons: String,ageGroup: String,title: St
         println("This is a story called $title, it teaches $ageGroup about $moralLessons")
     }
 }
+
+
+
+
+// 2. **African Cuisine:** You're creating a recipe app specifically for African cuisine.
+// The app needs to handle recipes from different African countries, each with its
+// unique ingredients, preparation time, cooking method, and nutritional
+// information. Consider creating a `Recipe` class, and think about how you might
+// create subclasses for different types of recipes (e.g., `MoroccanRecipe`,
+// `EthiopianRecipe`, `NigerianRecipe`), each with their own unique properties and
+// methods.
+
+fun main() {
+   val moroccanRecipe = MoroccanRecipe("Coloured Rice", listOf("rice", "onion", "olive oil", "spices"), 45, "Boiled ", "Nice for vitamins", "Medium")
+   println(moroccanRecipe)
+
+
+   val ethiopianRecipe = EthiopianRecipe("Boiled eggs", listOf("eggs", "water"), 20, "protein", "no speces", true)
+   println(ethiopianRecipe)
+
+
+   val nigerianRecipe = NigerianRecipe("Jollof Rice", listOf("rice", "tomatoes", "onion", "pepper", "spices"), 45, "Popular party dish", "is_spicy", true)
+   println(nigerianRecipe)
+
+
+}
+open class Recipe(val name: String, val country: String, val ingredients: List<String>, val preparationTime: Int, val cookingMethods: String, val nutritionalInfo: String) {
+   fun timeForPreparation(): String {
+       return if (preparationTime >= 3) {
+           "This coloured Rice takes a long time to prepare"
+       } else {
+           "This coloured Rice can be prepared within a reasonable amount of time"
+       }
+   }
+
+
+   override fun toString(): String {
+       return "Name: $name\ncountry: $country\ningredients: ${ingredients.joinToString(", ")}\npreparation_time: $preparationTime minutes\ncooking_method: $cookingMethods\nnutrition_info: $nutritionalInfo"
+   }
+}
+
+
+class MoroccanRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val spiceLevel: String) : Recipe(name, "Morocco", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
+
+class EthiopianRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val isInjeraIncluded: Boolean) : Recipe(name, "Ethiopia", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
+
+class NigerianRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val isSpicy: Boolean) : Recipe(name, "Nigeria", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
