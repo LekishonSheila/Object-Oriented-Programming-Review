@@ -1,0 +1,115 @@
+//1. **Ancestral Stories:** In many African cultures, the art of storytelling is passed
+//down from generation to generation. Imagine you're creating an application that
+//records these oral stories and translates them into different languages. The
+//stories vary by length, moral lessons, and the age group they are intended for.
+//Think about how you would model `Story`, `StoryTeller`, and `Translator`
+//objects, and how inheritance might come into play if there are different types of
+//stories or storytellers.
+//
+fun main() {
+
+    var story1 = AncestralStories("long","courage","children","The Lion king","English")
+
+    var story2 = AncestralStories("short", "hardwork", "teenagers", "Vuna Ulichopanda", "Kiswahili")
+
+    println(story1)
+    println(story2)
+
+    println(story1.translateStory("Kiswahili"))
+    println(story2.translateStory("Kikuyu"))
+
+    story2.addStoryToDatabase()
+    story1.addStoryToDatabase()
+
+
+
+    var abunwasi = StoryTeller("long", "bravery", "Young Adults", "Adventures of Kinjikitile", "Mijikenda", "Abunuwasi")
+
+    println(abunwasi)
+
+    abunwasi.tellStory()
+}
+
+open class AncestralStories(var length: String, var moralLessons: String, var ageGroup: String, var title: String, var language: String) {
+
+//    override fun toString(): String {
+//        return "AncestralStory: Title=$title, Length=$length, Moral Lessons=$moralLessons, Age Group=$ageGroup, Language=$language"
+//    }
+    fun translateStory(newLanguage: String): String {
+        if (language != newLanguage) {
+            return newLanguage
+        } else {
+            return language
+        }
+    }
+    fun addStoryToDatabase() {
+        var database = mutableListOf<String>()
+        if (!database.contains(title)) {
+            database.add(title)
+
+            println("The '$title' story added to the database.")
+        }
+        else {
+            println("This story already exists in storage")
+        }
+    }
+}
+
+class StoryTeller(length: String,moralLessons: String,ageGroup: String,title: String,language: String,val name: String)
+    : AncestralStories(length, moralLessons, ageGroup, title, language) {
+
+
+    fun tellStory() {
+        println("This is a story called $title, it teaches $ageGroup about $moralLessons")
+    }
+}
+
+
+
+
+// 2. **African Cuisine:** You're creating a recipe app specifically for African cuisine.
+// The app needs to handle recipes from different African countries, each with its
+// unique ingredients, preparation time, cooking method, and nutritional
+// information. Consider creating a `Recipe` class, and think about how you might
+// create subclasses for different types of recipes (e.g., `MoroccanRecipe`,
+// `EthiopianRecipe`, `NigerianRecipe`), each with their own unique properties and
+// methods.
+
+fun main() {
+   val moroccanRecipe = MoroccanRecipe("Coloured Rice", listOf("rice", "onion", "olive oil", "spices"), 45, "Boiled ", "Nice for vitamins", "Medium")
+   println(moroccanRecipe)
+
+
+   val ethiopianRecipe = EthiopianRecipe("Boiled eggs", listOf("eggs", "water"), 20, "protein", "no speces", true)
+   println(ethiopianRecipe)
+
+
+   val nigerianRecipe = NigerianRecipe("Jollof Rice", listOf("rice", "tomatoes", "onion", "pepper", "spices"), 45, "Popular party dish", "is_spicy", true)
+   println(nigerianRecipe)
+
+
+}
+open class Recipe(val name: String, val country: String, val ingredients: List<String>, val preparationTime: Int, val cookingMethods: String, val nutritionalInfo: String) {
+   fun timeForPreparation(): String {
+       return if (preparationTime >= 3) {
+           "This coloured Rice takes a long time to prepare"
+       } else {
+           "This coloured Rice can be prepared within a reasonable amount of time"
+       }
+   }
+
+
+   override fun toString(): String {
+       return "Name: $name\ncountry: $country\ningredients: ${ingredients.joinToString(", ")}\npreparation_time: $preparationTime minutes\ncooking_method: $cookingMethods\nnutrition_info: $nutritionalInfo"
+   }
+}
+
+
+class MoroccanRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val spiceLevel: String) : Recipe(name, "Morocco", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
+
+class EthiopianRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val isInjeraIncluded: Boolean) : Recipe(name, "Ethiopia", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
+
+class NigerianRecipe(name: String, ingredients: List<String>, preparationTime: Int, cookingMethod: String, nutritionalInfo: String, val isSpicy: Boolean) : Recipe(name, "Nigeria", ingredients, preparationTime, cookingMethod, nutritionalInfo)
+
