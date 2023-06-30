@@ -220,3 +220,26 @@ print(artistDatabase)
 print(duration)
 print(schedule)
 print(spaceOccupied)
+
+
+
+# Q5
+# Create a class called Product with attributes for name, price, and quantity.
+# Implement a method to calculate the total value of the product (price * quantity).
+# Create multiple objects of the Product class and calculate their total values.
+class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+    
+    def calculate_total_value(self):
+        return self.price * self.quantity
+
+productA = Product('Laptop', 15000, 2)
+productB = Product('Phones', 10000, 2)
+productC = Product('Television', 18000, 2)
+
+total_value = productA.calculate_total_value() + productB.calculate_total_value() + productC.calculate_total_value()
+
+print(f'The total value of all products is {total_value}.')
