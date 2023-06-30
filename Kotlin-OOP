@@ -168,3 +168,100 @@ fun main() {
     gazelle.typeOfAnimal()
     gazelle.likelihoodOfSurvival()
 }
+
+// 4.**African Music Festival:** You're in charge of organising a Pan-African music
+// festival. Many artists from different countries, each with their own musical style
+// and instruments are scheduled to perform. You need to write a program to
+// manage the festival lineup, schedule, and stage arrangements. Think about how
+// you might model the `Artist`, `Performance`, and `Stage` classes, and consider
+// how you might use inheritance if there are different types of performances or
+// stages.
+
+open class Artist(
+    var artistsName: String,
+    var country: String,
+    var musicStyle: String,
+    var instruments: List<String>
+) {
+    fun addArtists(artistDatabase: MutableList<String>): Boolean {
+        if (!artistDatabase.contains(artistsName)) {
+            artistDatabase.add(artistsName)
+            return true
+        }
+        return false
+    }
+
+    fun removeArtists(artistDatabase: MutableList<String>): String? {
+        return artistDatabase.removeFirstOrNull()
+    }
+}
+
+class Performance(
+    artistsName: String,
+    country: String,
+    musicStyle: String,
+    instruments: List<String>,
+    var startTime: Long,
+    var stopTime: Long
+) : Artist(artistsName, country, musicStyle, instruments) {
+
+    fun duration(): String {
+        val timeTaken = stopTime - startTime
+        return "The duration for the performance was $timeTaken"
+    }
+
+    fun schedule(): mutableListOf<String> {
+        val eventSchedule = mutableListOf<String>()
+        eventSchedule[artistsName] = startTime
+        return eventSchedule
+    }
+}
+
+class Stage(
+    artistsName: String,
+    country: String,
+    musicStyle: String,
+    instruments: List<String>,
+    var supportingArtists: Boolean
+) : Artist(artistsName, country, musicStyle, instruments) {
+
+    fun spaceOccupied(): String {
+        if (instruments.contains("drums") && supportingArtists) {
+            return "$artistsName will occupy only 50% of the stage"
+        }
+        if (instruments.contains("drums")) {
+            return "$artistsName will occupy only 70% of the stage"
+        }
+        if (supportingArtists) {
+            return "$artistsName will occupy only 80% of the stage"
+        }
+        return ""
+    }
+}
+
+
+
+
+
+// 5.Create a class called Product with attributes for name, price, and quantity.
+// Implement a method to calculate the total value of the product (price * quantity).
+// Create multiple objects of the Product class and calculate their total values.
+class Products (var name:String, var price:Double, var quantity:Int){
+    fun getTotalValue(){
+        var totalValue = quantity*price
+        return totalValue
+    }
+    fun addProductToDatabase(){
+        var database = mutableListOf<String>()
+        if (!database.contains(name)){
+            database.add(name)
+            println("$name has been added to database")
+        }
+        else{println("$name already exists in database")}
+    }
+}
+fun main(){
+    var product1 = Products("Soap", 10.0, 5)
+    product1.getTotalValue()
+    product1.addProductToDatabase()
+}
