@@ -149,3 +149,74 @@ lion.fast_killers()
 lion.method_of_killing() 
 gazelle.type_of_animal() 
 print(gazelle.defense_mechanisms)  
+
+
+# question4
+# 4.**African Music Festival:** You're in charge of organising a Pan-African music
+# festival. Many artists from different countries, each with their own musical style
+# and instruments are scheduled to perform. You need to write a program to
+# manage the festival lineup, schedule, and stage arrangements. Think about how
+# you might model the `Artist`, `Performance`, and `Stage` classes, and consider
+# how you might use inheritance if there are different types of performances or
+# stages.
+class Artist:
+    def __init__(self, artistsName, country, musicStyle, instruments):
+        self.artistsName = artistsName
+        self.country = country
+        self.musicStyle = musicStyle
+        self.instruments = instruments
+
+    def addArtists(self):
+        if self.artistsName not in artistDatabase:
+            artistDatabase.append(self.artistsName)
+
+    def removeArtists(self):
+        return artistDatabase.pop(0)
+
+
+class Performance(Artist):
+    def __init__(self, artistsName, country, musicStyle, instruments, startTime, stopTime):
+        super().__init__(artistsName, country, musicStyle, instruments)
+        self.startTime = startTime
+        self.stopTime = stopTime
+
+    def duration(self):
+        timeTaken = self.stopTime - self.startTime
+        return f"The duration for the performance was {timeTaken}"
+
+    def schedule(self):
+        eventSchedule = {}
+        eventSchedule[self.artistsName] = self.startTime
+        return eventSchedule
+
+
+class Stage(Artist):
+    def __init__(self, artistsName, country, musicStyle, instruments, supportingArtists):
+        super().__init__(artistsName, country, musicStyle, instruments)
+        self.supportingArtists = supportingArtists
+
+    def spaceOccupied(self):
+        if "drums" in self.instruments and self.supportingArtists:
+            return f"{self.artistsName} will occupy only 50% of the stage"
+        if "drums" in self.instruments:
+            return f"{self.artistsName} will occupy only 70% of the stage"
+        if self.supportingArtists:
+            return f"{self.artistsName} will occupy only 80% of the stage"
+
+
+artistDatabase = []
+
+# instances
+artist1 = Artist("Justine", "USA", "Intentions", ["guitar", "vocals"])
+artist1.addArtists()
+
+performance1 = Performance("Drake", "USA", "Rock", ["guitar", "vocals"], 10, 20)
+duration = performance1.duration()
+schedule = performance1.schedule()
+
+stage1 = Stage("Jay", "USA", "Rock", ["guitar", "vocals"], True)
+spaceOccupied = stage1.spaceOccupied()
+print(artistDatabase)
+print(duration)
+print(schedule)
+print(spaceOccupied)
