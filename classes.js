@@ -245,6 +245,96 @@ class Prey extends Species{
        }
    }
 
+     // 4. **African Music Festival:** You're in charge of organizing a Pan-African music
+// festival. Many artists from different countries, each with their own musical style
+// and instruments, are scheduled to perform. You need to write a program to
+// manage the festival lineup, schedule, and stage arrangements. Think about how
+// you might model the `Artist`, `Performance`, and `Stage` classes, and consider
+// how you might use inheritance if there are different types of performances or
+// stages.
+
+class Artist{
+    constructor(artistsName,country,musicStyle,instruments){
+        this.artistsName = artistsName;
+        this.country = country;
+        this.musicStyle = musicStyle;
+        this.instruments = instruments
+    }
+ addArtists(){
+    let artistDatabase = []
+    if(!artistDatabase.includes(this.artistsName)){
+        return artistDatabase.push(this.artistsName)
+    }
+ }
+ removeArtists(){
+    return artistDatabase.shift()
+    
+ }
+}
+
+class Perfomance extends Artist{
+    constructor(artistsName,country,musicStyle,instruments,startTime,stopTime){
+        super(artistsName,country,musicStyle,instruments)
+        this.startTime = startTime;
+        this.stopTime = stopTime;
+        this.musicStyle = musicStyle;
+}
+duration(){
+    let timeTaken = this.stopTime - this.startTime;
+    return `The duration for the perfomance was ${timeTaken}`
+}
+schedule(){
+    const eventSchedule = {}
+   return eventSchedule[this.artistsName] = this.startTime;
+
+}
+
+}
+
+class stage extends Artist{
+    constructor(artistsName,country,musicStyle,instruments,supportingArtists){
+        super(artistsName,country,musicStyle,instruments)
+        this.supportingArtists = supportingArtists;
+    
+}
+spaceOcuppied(){
+    if(this.instruments.includes("drums") && this.supportingArtists===True){
+        return `${this.artistsName} will occupy only 50% of the stage`
+    }
+    if(this.instruments.includes("drums")){
+        return `${this.artistsName} will occupy only 70% of the stage`
+
+    }
+    if(this.supportingArtists===True){
+        return `${this.artistsName} will occupy only 80% of the stage`
+    }
+}
+}
+
+    
+
+
+// 5. Create a class called Product with attributes for name, price, and quantity.
+// Implement a method to calculate the total value of the product (price * quantity).
+// Create multiple objects of the Product class and calculate their total values.
+
+class Product{
+    constructor(name,price,quantity){
+        this.name=name;
+        this.price=price;
+        this.quantity=quantity;
+    }
+    totalValue(){
+        let total= this.price*this.quantity
+        return total
+    }
+}
+let soap = new Product("geisha",25,5)
+soap.totalValue()
+let flour = new Product("exe",120,6)
+flour.totalValue()
+
+
 
 
  
