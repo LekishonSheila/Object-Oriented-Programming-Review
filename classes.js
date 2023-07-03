@@ -334,6 +334,45 @@ soap.totalValue()
 let flour = new Product("exe",120,6)
 flour.totalValue()
 
+//6. Implement a class called Student with attributes for name, age, and grades (a
+//     list of integers). Include methods to calculate the average grade, display the
+//     student information, and determine if the student has passed (average grade >=
+//     60). Create objects for the Student class and demonstrate the usage of these
+//     methods.
+
+class Student{
+    constructor(name,age,grades){
+        this.name=name;
+        this.age=age;
+        this.grades=grades;
+    }
+    averageGrade(){
+        let total=0;
+        for(g in this.grades){
+            total+=g;
+            console.log(total);
+        }
+        let average=total/(this.grades.length)
+        console.log(average);
+        
+    }
+    displayInfo(){
+       console.log(`This student's name is ${this.name} and they are ${this.age} years old and they have an average grade of ${this.averageGrade()}`);
+    }
+    passMark(){
+        if(this.averageGrade()>=60){
+            console.log("The student has passed");
+        }
+        else{
+            "The student has failed"
+        }
+    }
+}
+let John=new Student("John",23,[80,85,74,90])
+John.averageGrade()
+John.displayInfo()
+John.passMark()
+
 
 
 
