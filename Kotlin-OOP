@@ -273,3 +273,30 @@ fun main(){
 // 60). Create objects for the Student class and demonstrate the usage of these
 // methods
 
+class Student(var name: String, var age: Int, var grades: List<Int>) {
+    fun averageGrade() {
+        var total = 0
+        for (g in grades) {
+            total += g
+            println(total)
+        }
+        val average = total.toDouble() / grades.size
+        println(average)
+    }
+    fun displayInfo() {
+        println("This student's name is $name and they are $age years old and they have an average grade of ${averageGrade()}")
+    }
+    fun passMark() {
+        if (averageGrade() >= 60) {
+            println("The student has passed")
+        } else {
+            println("The student has failed")
+        }
+    }
+}
+fun main() {
+    val john = Student("John", 23, listOf(80, 85, 74, 90))
+    john.averageGrade()
+    john.displayInfo()
+    john.passMark()
+}
