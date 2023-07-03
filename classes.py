@@ -243,3 +243,39 @@ productC = Product('Television', 18000, 2)
 total_value = productA.calculate_total_value() + productB.calculate_total_value() + productC.calculate_total_value()
 
 print(f'The total value of all products is {total_value}.')
+
+
+# question6
+# Implement a class called Student with attributes for name, age, and grades (a
+# list of integers). Include methods to calculate the average grade, display the
+# student information, and determine if the student has passed (average grade >=
+# 60). Create objects for the Student class and demonstrate the usage of these
+# methods.
+
+class Student:
+    def __init__(self, name, age, grades):
+        self.name = name
+        self.age = age
+        self.grades = grades
+    
+    def averageGrade(self):
+        total = sum(self.grades)
+        average = total / len(self.grades)
+        return average
+    
+    def displayInfo(self):
+        average = self.averageGrade()
+        print(f"This student's name is {self.name} and they are {self.age} years old and they have an average grade of {average}")
+    
+    def passMark(self):
+        average = self.averageGrade()
+        if average >= 60:
+            print("The student has passed")
+        else:
+            print("The student has failed")
+
+John = Student("John", 23, [80, 85, 74, 90])
+John.averageGrade()
+John.displayInfo()
+John.passMark()
+
